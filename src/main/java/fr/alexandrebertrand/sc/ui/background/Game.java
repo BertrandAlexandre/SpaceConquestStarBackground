@@ -33,8 +33,9 @@ public class Game extends JFrame {
     public void initUI() {
         add(new Board());
         
-        setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(400, 400);
+        //setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         setTitle("Space Conquest Star Background");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -60,12 +60,12 @@ public final class StarPainter {
      * @param star Star used to determinate the gradient
      * @return Gradient of the star
      */
-    private static Paint getGradient(Star star) {
+    public static Paint getGradient(Star star) {
         float x = star.getPosition().x + star.getSize() / 2;
         float y = star.getPosition().y + star.getSize() / 2;
         Point2D center = new Point2D.Float(x, y);
         float radius = star.getSize() / 2;
-        float[] dist = {0.0f, 0.35f, 0.55f, 1.0f};
+        float[] dist = {0.0f, 0.1f, 0.25f, 1.0f};
         Color[] colors = {
             Color.WHITE,
             Color.WHITE,

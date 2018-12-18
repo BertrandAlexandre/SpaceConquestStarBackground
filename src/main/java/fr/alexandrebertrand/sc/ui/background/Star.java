@@ -48,15 +48,21 @@ public class Star {
      * Initialize the star size
      */
     private void initSize() {
+        int t = 1000;
+        int h = 40;
+        int m = 7;
+        double l = 1.5;
+        
+        this.size = 2;
         Random r = new Random();
-        int n = r.nextInt(12);
-        if (0 <= n && n <= 8) {
-            size = 18;
-        } else if (9 <= n && n <= 10) {
-            size = 24;
-        } else {
-            size = 32;
-        }
+    	double n = Math.floor(Math.log((Math.random() * t) + 1)/Math.log(l));
+    	if (n >= m) {
+    		double hn = h - n;
+    		double h2 = h / 2;
+    		double c = Math.pow(hn, hn / h2) / (h2 - 1);
+    		float v = (r.nextFloat() - 1) / 4;
+    		this.size = (int) Math.round(c + c * v);
+    	}
     }
     
     /**
@@ -82,7 +88,7 @@ public class Star {
         } else if (51 <= n && n <= 54) {
             color = new Color(255, 222, 132);
         } else if (55 <= n && n <= 57) {
-            color = new Color(122, 153, 255);
+            color = new Color(137, 221, 255);
         } else {
             color = new Color(247, 131, 131);
         }
@@ -131,6 +137,27 @@ public class Star {
      */
     public Color getColor() {
         return this.color;
+    }
+    
+    
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+    
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setColor(int i) {
+    	if (i == 1) {
+    		this.color = new Color(255, 222, 132);
+    	} else if (i == 2) {
+    		this.color = new Color(137, 221, 255);
+    	} else if (i == 3) {
+    		this.color = new Color(247, 131, 131);
+    	} else {
+    		this.color = new Color(255, 255, 255);
+    	}
     }
     
 }
