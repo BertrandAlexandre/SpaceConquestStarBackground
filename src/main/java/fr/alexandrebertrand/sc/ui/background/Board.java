@@ -25,6 +25,10 @@ public class Board extends JPanel implements ActionListener {
     /** Preferized number of fraps per second */
     private static final int FRAPS_PER_SECOND = 60;
     
+    private int a = 1; // STUB to delete
+    
+    private Star s; // STUB to delete
+    
     /*
      * Attributes
      */
@@ -42,6 +46,7 @@ public class Board extends JPanel implements ActionListener {
     public Board() {
         super();
         initBoard();
+        s = new Star(getSize());
     }
     
     /*
@@ -74,7 +79,7 @@ public class Board extends JPanel implements ActionListener {
      * Manage current loop operations
      */
     private void manageLoop() {
-        StarManager.update(getSize());
+        // StarManager.update(getSize()); // STUB to uncomment
     }
     
     /**
@@ -89,14 +94,19 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
-        //StarPainter.paint(g2);
-        Star s = new Star(getSize());
-        s.setSize(200);
-        s.setPosition(new Point(1, 1));
-        s.setColor(3);
+        
+        //StarPainter.paint(g2); // STUB to uncomment
+        
+        /* STUB BEGIN To delete */
+        if (a % 50 == 0) {
+	        s = new Star(getSize());
+	        a = 1;
+        }
+        a++;
         g2.setPaint(StarPainter.getGradient(s));
         g2.fillOval(s.getPosition().x, s.getPosition().y,
                     s.getSize(), s.getSize());
+        /* STUB END To delete */
         
         g2.dispose();
         

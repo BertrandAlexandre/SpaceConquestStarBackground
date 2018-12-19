@@ -3,6 +3,8 @@ package fr.alexandrebertrand.sc.ui.background;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -24,6 +26,9 @@ public class Star {
     
     /** Color of the star */
     private Color color;
+    
+    /** Glow color of the star */
+    private Color glowColor;
     
     /*
      * Constructors
@@ -53,16 +58,18 @@ public class Star {
         int m = 7;
         double l = 1.5;
         
-        this.size = 2;
+        size = 2;
         Random r = new Random();
     	double n = Math.floor(Math.log((Math.random() * t) + 1)/Math.log(l));
     	if (n >= m) {
     		double hn = h - n;
     		double h2 = h / 2;
-    		double c = Math.pow(hn, hn / h2) / (h2 - 1);
+    		double c = Math.pow(hn, hn / h2) / (h2 / 2);
     		float v = (r.nextFloat() - 1) / 4;
-    		this.size = (int) Math.round(c + c * v);
+    		size = (int) Math.round(c + c * v);
     	}
+    	
+    	size = 200; // STUB To delete
     }
     
     /**
@@ -75,23 +82,48 @@ public class Star {
         int x = r.nextInt((int) d.getWidth() + size * 2) - size;
         int y = r.nextInt((int) d.getHeight() + size * 2) - size;
         position = new Point(x, y);
+        
+        position = new Point(100, 100); // STUB To delete
     }
     
     /**
      * Initialize the star color
      */
     private void initColor() {
-        Random r = new Random();
-        int n = r.nextInt(60);
-        if (0 <= n && n <= 50) {
-            color = new Color(255, 255, 255);
-        } else if (51 <= n && n <= 54) {
-            color = new Color(255, 222, 132);
-        } else if (55 <= n && n <= 57) {
-            color = new Color(137, 221, 255);
-        } else {
-            color = new Color(247, 131, 131);
-        }
+    	Random rand = new Random();
+    	
+    	double t = 255d;
+    	double l = 170d;
+    	
+    	List<Double> c1 = new ArrayList<>();
+    	List<Double> c2 = new ArrayList<>();
+    	for (int i = 0; i < 3; i++) {
+    		c1.add(t);
+    		c2.add(t);
+    	}
+    	
+    	int c = rand.nextInt(6);
+    	
+    	if (true) { // STUB c == 0
+    		int min = rand.nextInt(3);
+    		int var = rand.nextInt(2);
+    		if (min == var) {
+    			min = 2;
+    		}
+    		
+    		double h = (double) rand.nextInt((int) (t + 1));
+    		c2.set(min, 0d);
+    		c2.set(var, h);
+    		
+        	c1.set(min, l);
+        	double f = (t - h) * l / t;
+        	c1.set(var, h + f);
+    	}
+    	
+    	color = new Color(c1.get(0).intValue(), c1.get(1).intValue(),
+    			c1.get(2).intValue());
+		glowColor = new Color(c2.get(0).intValue(), c2.get(1).intValue(), 
+				c2.get(2).intValue(), 50);
     }
     
     /*
@@ -139,25 +171,13 @@ public class Star {
         return this.color;
     }
     
-    
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-    
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public void setColor(int i) {
-    	if (i == 1) {
-    		this.color = new Color(255, 222, 132);
-    	} else if (i == 2) {
-    		this.color = new Color(137, 221, 255);
-    	} else if (i == 3) {
-    		this.color = new Color(247, 131, 131);
-    	} else {
-    		this.color = new Color(255, 255, 255);
-    	}
+    /**
+     * Get glow color of the star
+     * 
+     * @return Glow color of the star
+     */
+    public Color getGlowColor() {
+        return this.glowColor;
     }
     
 }
