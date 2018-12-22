@@ -47,7 +47,6 @@ public final class StarPainter {
         g.setBackground(BACKGROUND_COLOR);
         for (int i = 0; i < stars.length; i++) {
             if (stars[i] != null) {
-            	System.out.println(stars[i].getSize());
                 g.setPaint(getGradient(stars[i]));
                 g.fillOval(stars[i].getPosition().x, stars[i].getPosition().y,
                            stars[i].getSize(), stars[i].getSize());
@@ -61,7 +60,7 @@ public final class StarPainter {
      * @param star Star used to determinate the gradient
      * @return Gradient of the star
      */
-    public static Paint getGradient(Star star) { // STUB private
+    private static Paint getGradient(Star star) {    	
         float x = star.getPosition().x + star.getSize() / 2;
         float y = star.getPosition().y + star.getSize() / 2;
         Point2D center = new Point2D.Float(x, y);

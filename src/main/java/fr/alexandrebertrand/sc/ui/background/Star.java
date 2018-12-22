@@ -68,8 +68,6 @@ public class Star {
     		float v = (r.nextFloat() - 1) / 4;
     		size = (int) Math.round(c + c * v);
     	}
-    	
-    	size = 200; // STUB To delete
     }
     
     /**
@@ -79,11 +77,9 @@ public class Star {
      */
     private void initPosition(Dimension d) {
         Random r = new Random();
-        int x = r.nextInt((int) d.getWidth() + size * 2) - size;
+        int x = (int) (r.nextInt((int) d.getWidth() + size * 2) - size + d.getWidth());
         int y = r.nextInt((int) d.getHeight() + size * 2) - size;
         position = new Point(x, y);
-        
-        position = new Point(100, 100); // STUB To delete
     }
     
     /**
@@ -104,7 +100,7 @@ public class Star {
     	
     	int c = rand.nextInt(6);
     	
-    	if (true) { // STUB c == 0
+    	if (c == 0) {
     		int min = rand.nextInt(3);
     		int var = rand.nextInt(2);
     		if (min == var) {
@@ -124,6 +120,10 @@ public class Star {
     			c1.get(2).intValue());
 		glowColor = new Color(c2.get(0).intValue(), c2.get(1).intValue(), 
 				c2.get(2).intValue(), 50);
+    }
+    
+    public void move() {
+    	position.x -= (size / 2);
     }
     
     /*
