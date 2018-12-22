@@ -14,7 +14,7 @@ public final class StarManager {
      */
     
     /** Number of stars on the screen */
-    public static final int STAR_NUMBER = 100;
+    public static final int STAR_NUMBER = 1000;
     
     /*
      * Attributes
@@ -40,7 +40,7 @@ public final class StarManager {
     /**
      * Update stars
      * 
-     * @param d Dimention of the board
+     * @param d Dimension of the board
      */
     public static void update(Dimension d) {
         if (stars == null) {
@@ -49,6 +49,8 @@ public final class StarManager {
         for (int i = 0; i < stars.length; i++) {
             if (stars[i] == null || stars[i].isDead()) {
                 stars[i] = new Star(d);
+            } else {
+            	stars[i].move();
             }
         }
     }
